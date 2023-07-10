@@ -1,10 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useGlobalContext } from "./gallerycontext";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
+  const {gallery,setGallery} = useGlobalContext();
   const [nameValue, setNameValue] = useState("");
   const [urlValue, setUrlValue] = useState("");
 
@@ -12,7 +15,6 @@ export default function Home() {
     name: String,
     imageURL:String
   }
-  const [Gallery, setGallery] = useState<Picture[]>([]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,8 +24,8 @@ export default function Home() {
       name: nameValue,
       imageURL: urlValue
     };
-    console.log(Gallery)
-    setGallery((prev) => [...prev, newImage]);
+    console.log(gallery)
+    setGallery((prevGallery) => [...prevGallery, newImage]);
     setNameValue("");
     setUrlValue("");
   };
