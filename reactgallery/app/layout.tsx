@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "React Gallery V2",
+  title: "Image In",
   description: "A fullstack gallery application",
 };
 

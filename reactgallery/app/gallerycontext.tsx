@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface Picture {
   name: string;
@@ -11,11 +11,16 @@ interface GalleryContextType {
   setGallery: React.Dispatch<React.SetStateAction<Picture[]>>;
 }
 
+
+interface GalleryProviderProps {
+  children: ReactNode;
+}
+
 export const GalleryContext = createContext<GalleryContextType | undefined>(
   undefined
 );
 
-export const GalleryProvider: React.FC = ({ children }) => {
+export const GalleryProvider: React.FC<GalleryProviderProps> = ({ children }) => {
   const [gallery, setGallery] = useState<Picture[]>([]);
 
   return (
@@ -25,4 +30,10 @@ export const GalleryProvider: React.FC = ({ children }) => {
   );
 };
 
-export const useGlobalContext = () => useContext(GalleryContext)
+export const useGlobalContext = () => {
+  const context = useContext(GalleryContext);
+  if (!context) {
+    throw new Error("useGlobalContext must be used within a GalleryProvider");
+  }
+  return context;
+};

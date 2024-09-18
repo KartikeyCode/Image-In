@@ -2,11 +2,18 @@
 import { useGlobalContext } from "../gallerycontext";
 import { useState,useContext } from "react";
 import { motion } from "framer-motion";
+
+interface ImgCardProps {
+  name: string;
+  imageURL: string;
+}
+
+
 export default function Gallery(){
 
     const {gallery} = useGlobalContext();
 
-    function ImgCard (props){
+    function ImgCard (props:ImgCardProps){
         return(
             <article className="group">
   <img

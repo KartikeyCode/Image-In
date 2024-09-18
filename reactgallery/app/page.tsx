@@ -12,8 +12,8 @@ export default function Home() {
   const [urlValue, setUrlValue] = useState("");
 
   interface Picture{
-    name: String,
-    imageURL:String
+    name: string,
+    imageURL:string
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
